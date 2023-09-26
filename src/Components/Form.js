@@ -4,8 +4,6 @@ import React,{useState,useEffect} from 'react'
 // importing toasts
 import {toast } from 'react-toastify';
 
-
-
 //importing icons from react icons
 import {BsCalendarPlus} from 'react-icons/bs';
 import {RiDeleteBin6Line} from 'react-icons/ri';
@@ -173,13 +171,14 @@ const Form = () => {
 
 
         {/* Rendering todos depending on length of todos greater than 0 */}
-        <div className='mt-3 border-blue-800 border-2'>
+        <div className='mt-3 border-blue-800 border-2   '>
           {todos.length>0 &&(
-            <div>
+            <div className='flex flex-col-reverse'>
               {todos.map(   (individualTodo,index)=>(
-                <div className='bg-green-600 m-2 p-2 flex justify-between' key={individualTodo.ID}>
 
-                  <div className='flex gap-3'>
+                <div className='bg-green-600 m-2 p-2 flex  justify-between' key={individualTodo.ID}>
+
+                  <div className='flex  gap-3'>
 
                        {/* we dont need to show checkbox when edit button is clicked */}
                       

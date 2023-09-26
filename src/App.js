@@ -8,7 +8,7 @@ function App() {
     
     <Todo/>
 
-    <ToastContainer autoClose={2000}/>
+    <ToastContainer autoClose={1700}/>
     </div>
   );
 }
