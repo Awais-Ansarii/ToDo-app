@@ -2,8 +2,10 @@
 import React,{useState,useEffect} from 'react'
 
 
-// icons from react icons
+//importing icons from react icons
 import {BsCalendarPlus} from 'react-icons/bs';
+import {RiDeleteBin6Line} from 'react-icons/ri';
+import {BiEdit} from 'react-icons/bi';
 
 
 // getting todos from local storage
@@ -19,6 +21,11 @@ const getTodosFromLS=()=>{
 
 
 const Form = () => {
+
+
+    // id state
+    const [id,setId]=useState();
+
 
      // todo value state
      const [todoValue, setTodoValue]=useState('');
@@ -48,6 +55,28 @@ const Form = () => {
         setTodoValue('');
     }
 
+    
+
+    // handle checkbox
+        const handleCheckbox=(id)=>{
+            let todoArray=[];
+            todos.forEach((todo)=>{
+              if(todo.ID===id){
+                if(todo.completed===false){
+                  todo.completed=true;
+                }
+                else if(todo.completed===true){
+                  todo.completed=false;
+                }
+              }
+              todoArray.push(todo);
+              // console.log(todoArray);
+              setTodos(todoArray);
+            })
+          }
+
+
+
     // saving data to local storage
     useEffect(() => {
         localStorage.setItem('Todos',JSON.stringify(todos));
@@ -75,9 +104,51 @@ const Form = () => {
         </form>
                 {/* end of form component */}
 
+
+
+        {/* Rendering todos depending on length of todos greater than 0 */}
+        <div>
+          {todos.length>0 &&(
+            <div>
+              {todos.map(   (individualTodo,index)=>(
+                <div className='' key={individualTodo.ID}>
+                  <div>
+                      
+                      {(
+                        <input type='checkbox' checked={individualTodo.completed}
+                        onChange={()=>handleCheckbox(individualTodo.ID)}/>
+                      )}
+                      <span
+                      style={individualTodo.completed===true?{textDecoration:'line-through'}:{textDecoration:'none'}}>{individualTodo.TodoValue}</span>
+                  </div>
+
+                  
+                  {(
+                    <div className=''>
+
+                        <button><BiEdit/></button>
+
+
+                        <button><RiDeleteBin6Line/></button>
+                      
+
+                      
+
+                    </div>
+                  )}
+
+                    </div>
+                     )
+                 )} 
+              </div>
+          )}
+          </div>
+
+             
+
 </div>
    
   )
 }
 
-export default Form
+export default Form;
