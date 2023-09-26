@@ -34,6 +34,9 @@ const Form = () => {
     const [todos, setTodos]=useState(getTodosFromLS());
     // console.log(todos);
 
+    // edit form
+    const [editForm, setEditForm]=useState(false);
+
      // form submit event
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -75,6 +78,31 @@ const Form = () => {
             })
           }
 
+    // edit todo
+    const handleEdit=(todo,index)=>{
+        setEditForm(true);
+        setTodoValue(todo.TodoValue);
+        setId(index);
+      }
+
+    // edit todo submit
+    const handleEditSubmit=(e)=>{
+        e.preventDefault();
+        // copying todos state in items variable
+        let items = [...todos];
+        // storing the element at a particular index in item variable
+        let item = items[id];
+        // manipulating the item (object) keys
+        item.TodoValue=todoValue;
+        item.completed=false;
+        // after manipulating item, saving it at the same index in items
+        items[id]=item;
+        // updating todos with items
+        setTodos(items);
+        setEditForm(false);
+        setTodoValue('');
+      }
+
     // delete todo
     const handleDelete=(id)=>{
         // console.log(id);
@@ -93,7 +121,7 @@ const Form = () => {
         <div className='mt-3    '>
 
       {/* form component */}
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      { editForm===false && <form autoComplete="off" onSubmit={handleSubmit}>
                 <div className='flex justify-center' >
 
                   <input className=' rounded-full text-base md:text-lg text-black shadow-gray-400 shadow-md w-[65%] md:w-[70%] bg-white pl-4 '
@@ -110,7 +138,29 @@ const Form = () => {
                
                 </div>
         </form>
+      }
                 {/* end of form component */}
+
+
+        {/* edit form component */}
+        {editForm===true &&(
+            <div className=" ">
+              <form autoComplete="off " onSubmit={handleEditSubmit}>
+                <div className="input-and-button">
+                  <input
+                  className='rounded-full text-base md:text-lg text-black shadow-gray-400 shadow-md w-[65%] md:w-[70%] bg-white pl-4 '
+                   type='text' placeholder="Edit your Item" required
+                  onChange={(e)=>setTodoValue(e.target.value)} value={todoValue}/>
+                  <div className='text-[1.3rem] md:text-[2rem]   px-2 md:px-4  rounded-xl bg-violet-600 text-yellow-400'>
+                    <button type="submit">
+                      UPDATE
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          )}
+          {/* end of edit form component */}
 
 
 
@@ -122,11 +172,15 @@ const Form = () => {
                 <div className='bg-green-600 m-2 p-2 flex justify-between' key={individualTodo.ID}>
 
                   <div className='flex gap-3'>
+
+                       {/* we dont need to show checkbox when edit button is clicked */}
                       
-                      {(
-                        <input type='checkbox' checked={individualTodo.completed}
-                        onChange={()=>handleCheckbox(individualTodo.ID)}/>
-                      )}
+                      {
+                        editForm===false && (
+                            <input type='checkbox' checked={individualTodo.completed}
+                            onChange={()=>handleCheckbox(individualTodo.ID)}/>
+                        )
+                      }
 
                       <span
                       style={individualTodo.completed===true?{textDecoration:'line-through'}:{textDecoration:'none'}}>
@@ -136,11 +190,15 @@ const Form = () => {
                       </span>
                   </div>
 
+                   {/* we dont need to show edit and delete icons when edit button is clicked */}
                   
-                  {(
+                  { editForm===false &&
+                    (
                     <div className='flex gap-3'>
 
-                        <button><BiEdit/></button>
+                        <button onClick={()=>handleEdit(individualTodo,index)}>
+                            <BiEdit/>
+                        </button>
 
 
                         <button  onClick={()=>handleDelete(individualTodo.ID)}>

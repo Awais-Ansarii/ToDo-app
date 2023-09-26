@@ -8,9 +8,11 @@
 - Implemented submit handler functionality
 - Implemented functionality of saving & fetching todo data to/from Local-Storage 
 - Fetched data from Local-Storage and Populated Todo data on UI using map().
-- Implemented Handle Checkbox Function to mark Tasks as completed.
+- Implemented Handle Checkbox Function to mark Todo as completed.
 - Implemented Handle Delete Function to delete the todo's from UI.
 - Applied styling to Form Component
+- Implemented Edit-Form Function to update Todos
+- 
 
 
 
