@@ -6,7 +6,16 @@ import React,{useState,useEffect} from 'react'
 import {BsCalendarPlus} from 'react-icons/bs';
 
 
-
+// getting todos from local storage
+const getTodosFromLS=()=>{
+    const data = localStorage.getItem('Todos');
+    if(data){
+        return JSON.parse(data);
+    }
+    else{
+        return [];
+    }
+}
 
 
 const Form = () => {
@@ -15,7 +24,7 @@ const Form = () => {
      const [todoValue, setTodoValue]=useState('');
 
      // todos array of objects
-    const [todos, setTodos]=useState([]);
+    const [todos, setTodos]=useState(getTodosFromLS());
     // console.log(todos);
 
      // form submit event
@@ -38,6 +47,11 @@ const Form = () => {
         setTodos([...todos,todoObject]);
         setTodoValue('');
     }
+
+    // saving data to local storage
+    useEffect(() => {
+        localStorage.setItem('Todos',JSON.stringify(todos));
+    }, [todos]);
 
   return (
         <div className='mt-3  '>

@@ -6,6 +6,8 @@
 ▶ Created Components Folder to optimize the folder structure
 ▶ Created Todo.js, Form.js compoenent and written their logic
 ▶ Implemented submit handler functionality
+▶ Implemented functionality of saving & fetching todo data to/from Local-Storage 
+▶ 
 
 
 
