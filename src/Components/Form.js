@@ -1,6 +1,10 @@
 // we need useState and useEffect hooks
 import React,{useState,useEffect} from 'react'
 
+// importing toasts
+import {toast } from 'react-toastify';
+
+
 
 //importing icons from react icons
 import {BsCalendarPlus} from 'react-icons/bs';
@@ -133,7 +137,8 @@ const Form = () => {
 
 
                  
-                    <button className=' text-[1.3rem] md:text-[2rem]   px-2 md:px-4  rounded-xl  '
+                    <button  className=' text-[1.3rem] md:text-[2rem]   px-2 md:px-4  rounded-xl  '
+                        onClick={ () => toast.success( " Todo added 🏍 " )} 
                      type="submit">
                       <BsCalendarPlus  color='yellow'/>
                     </button>
@@ -154,7 +159,8 @@ const Form = () => {
                    type='text' placeholder="Edit your Item" required
                   onChange={(e)=>setTodoValue(e.target.value)} value={todoValue}/>
                   <div className='text-[1.3rem] md:text-[2rem]   px-2 md:px-4  rounded-xl bg-violet-600 text-yellow-400'>
-                    <button type="submit">
+                    <button type="submit" 
+                    onClick={()=>toast.info( "Todo updated👍" )}>
                       UPDATE
                     </button>
                   </div>
@@ -198,12 +204,15 @@ const Form = () => {
                     (
                     <div className='flex gap-3'>
 
-                        <button onClick={()=>handleEdit(individualTodo,index)}>
+                        <button onClick={ ()=> 
+                                  handleEdit(individualTodo,index)
+                         }>
                             <BiEdit/>
                         </button>
 
 
-                        <button  onClick={()=>handleDelete(individualTodo.ID)}>
+                        <button  onClick={()=>{handleDelete(individualTodo.ID);
+                         toast.warning( "Todos deleted ✂" )}}>
                         <RiDeleteBin6Line/>
 
                         </button>
@@ -232,11 +241,15 @@ const Form = () => {
               { (editForm===false && todos.length>0 ) && (
                 <div className='' >
                   <button className=' bg-pink-800 text-yellow-400 p-2 rounded-lg'
-                  onClick={()=>setTodos([])}>
+                  onClick={()=> {setTodos([]); toast.error( " All Todos deleted 🏴‍☠️ " )}   } >
                     Delete All Todos
                   </button>
                 </div>
               )}
+
+
+
+              
             
         </div>
        

@@ -13,7 +13,7 @@
 - Applied styling to Form Component
 - Implemented Edit-Form Function to update Todos
 - Implemented delete all Todos functionality
-- 
+- Added Toasts which pops-up on UI after successfull addition, update, deletion of Todos.
 
 
 
