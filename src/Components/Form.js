@@ -120,6 +120,8 @@ const Form = () => {
   return (
         <div className='mt-3    '>
 
+            <div className=''>
+
       {/* form component */}
       { editForm===false && <form autoComplete="off" onSubmit={handleSubmit}>
                 <div className='flex justify-center' >
@@ -219,9 +221,25 @@ const Form = () => {
           )}
           </div>
 
+
+
              
 
-</div>
+            </div>
+
+            
+                 {/* delete all todos */}
+              { (editForm===false && todos.length>0 ) && (
+                <div className='' >
+                  <button className=' bg-pink-800 text-yellow-400 p-2 rounded-lg'
+                  onClick={()=>setTodos([])}>
+                    Delete All Todos
+                  </button>
+                </div>
+              )}
+            
+        </div>
+       
    
   )
 }

@@ -12,6 +12,7 @@
 - Implemented Handle Delete Function to delete the todo's from UI.
 - Applied styling to Form Component
 - Implemented Edit-Form Function to update Todos
+- Implemented delete all Todos functionality
 - 
 
 
