@@ -90,7 +90,8 @@ const Form = () => {
     }, [todos]);
 
   return (
-        <div className='mt-3  '>
+        <div className='mt-3    '>
+
       {/* form component */}
       <form autoComplete="off" onSubmit={handleSubmit}>
                 <div className='flex justify-center' >
@@ -114,24 +115,30 @@ const Form = () => {
 
 
         {/* Rendering todos depending on length of todos greater than 0 */}
-        <div>
+        <div className='mt-3 border-blue-800 border-2'>
           {todos.length>0 &&(
             <div>
               {todos.map(   (individualTodo,index)=>(
-                <div className='' key={individualTodo.ID}>
-                  <div>
+                <div className='bg-green-600 m-2 p-2 flex justify-between' key={individualTodo.ID}>
+
+                  <div className='flex gap-3'>
                       
                       {(
                         <input type='checkbox' checked={individualTodo.completed}
                         onChange={()=>handleCheckbox(individualTodo.ID)}/>
                       )}
+
                       <span
-                      style={individualTodo.completed===true?{textDecoration:'line-through'}:{textDecoration:'none'}}>{individualTodo.TodoValue}</span>
+                      style={individualTodo.completed===true?{textDecoration:'line-through'}:{textDecoration:'none'}}>
+                      
+                      {individualTodo.TodoValue}
+                      
+                      </span>
                   </div>
 
                   
                   {(
-                    <div className=''>
+                    <div className='flex gap-3'>
 
                         <button><BiEdit/></button>
 
