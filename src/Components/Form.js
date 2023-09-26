@@ -14,10 +14,35 @@ const Form = () => {
      // todo value state
      const [todoValue, setTodoValue]=useState('');
 
+     // todos array of objects
+    const [todos, setTodos]=useState([]);
+    // console.log(todos);
+
+     // form submit event
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+
+        // creating a unique ID for every todo
+        const date = new Date();
+        const time = date.getTime();
+        // end of creating a ID
+
+        // creating a todo object
+        let todoObject={
+          ID: time,
+          TodoValue:todoValue,
+          completed: false
+        }
+        // end of creating a todo object
+
+        setTodos([...todos,todoObject]);
+        setTodoValue('');
+    }
+
   return (
         <div className='mt-3  '>
       {/* form component */}
-      <form >
+      <form autoComplete="off" onSubmit={handleSubmit}>
                 <div className='flex justify-center' >
 
                   <input className=' rounded-full text-base md:text-lg text-black shadow-gray-400 shadow-md w-[65%] md:w-[70%] bg-white pl-4 '
