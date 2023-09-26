@@ -75,7 +75,14 @@ const Form = () => {
             })
           }
 
-
+    // delete todo
+    const handleDelete=(id)=>{
+        // console.log(id);
+        const filtered = todos.filter((todo)=>{
+          return todo.ID!==id
+        });
+        setTodos(filtered);
+      }
 
     // saving data to local storage
     useEffect(() => {
@@ -129,7 +136,10 @@ const Form = () => {
                         <button><BiEdit/></button>
 
 
-                        <button><RiDeleteBin6Line/></button>
+                        <button  onClick={()=>handleDelete(individualTodo.ID)}>
+                        <RiDeleteBin6Line/>
+
+                        </button>
                       
 
                       

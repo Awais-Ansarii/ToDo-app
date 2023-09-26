@@ -9,6 +9,7 @@
 ▶ Implemented functionality of saving & fetching todo data to/from Local-Storage 
 ▶ Fetched data from Local-Storage and Populated Todo data on UI using map().
 ▶ Implemented Handle Checkbox Function to mark Tasks as completed.
+▶ Implemented Handle Delete Function to delete the todo's from UI.
 
 
 
