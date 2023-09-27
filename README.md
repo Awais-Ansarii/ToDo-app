@@ -14,7 +14,8 @@
 - Implemented Edit-Form Function to update Todos
 - Implemented delete all Todos functionality
 - Added Toasts which pops-up on UI after successfull addition, update, deletion of Todos.
-
+- Handled some edge cases like show a msg "  add some Todos in your Todo-List " when there is no tasks inside todo list,
+- Hide delete all todos button when there is no todo present etc etc.
 
 
 

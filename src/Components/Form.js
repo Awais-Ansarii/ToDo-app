@@ -120,9 +120,9 @@ const Form = () => {
     }, [todos]);
 
   return (
-        <div className='mt-3    '>
+        <div className='mt-3  flex justify-between w-[100%] '>
 
-            <div className=''>
+            <div className=' w-[80%] '>
 
       {/* form component */}
       { editForm===false && <form autoComplete="off" onSubmit={handleSubmit}>
@@ -149,34 +149,38 @@ const Form = () => {
 
         {/* edit form component */}
         {editForm===true &&(
-            <div className=" ">
+            
               <form autoComplete="off " onSubmit={handleEditSubmit}>
-                <div className="input-and-button">
+                <div className='flex justify-center'>
                   <input
                   className='rounded-full text-base md:text-lg text-black shadow-gray-400 shadow-md w-[65%] md:w-[70%] bg-white pl-4 '
                    type='text' placeholder="Edit your Item" required
                   onChange={(e)=>setTodoValue(e.target.value)} value={todoValue}/>
-                  <div className='text-[1.3rem] md:text-[2rem]   px-2 md:px-4  rounded-xl bg-violet-600 text-yellow-400'>
-                    <button type="submit" 
+
+
+                  
+                    <button
+                    className='text-[0.5rem] md:text-[1rem] font-bold ml-2   px-2 md:px-4  rounded-xl bg-violet-600 text-yellow-400'
+                     type="submit" 
                     onClick={()=>toast.info( "Todo updated👍" )}>
-                      UPDATE
+                      Update 
                     </button>
-                  </div>
+                  
                 </div>
               </form>
-            </div>
+          
           )}
           {/* end of edit form component */}
 
 
 
         {/* Rendering todos depending on length of todos greater than 0 */}
-        <div className='mt-3 border-blue-800 border-2   '>
+        <div className='mt-3   '>
           {todos.length>0 &&(
             <div className='flex flex-col-reverse'>
               {todos.map(   (individualTodo,index)=>(
 
-                <div className='bg-green-600 m-2 p-2 flex  justify-between' key={individualTodo.ID}>
+                <div className='bg-yellow-400 text-black font-semibold text-xl m-2 p-2 flex  justify-between' key={individualTodo.ID}>
 
                   <div className='flex  gap-3'>
 
@@ -211,7 +215,7 @@ const Form = () => {
 
 
                         <button  onClick={()=>{handleDelete(individualTodo.ID);
-                         toast.warning( "Todos deleted ✂" )}}>
+                         toast.warning( "Todo deleted ✂" )}}>
                         <RiDeleteBin6Line/>
 
                         </button>
@@ -226,12 +230,14 @@ const Form = () => {
                      )
                  )} 
               </div>
+          )} 
+
+          {todos.length === 0 && (
+            <div className='text-yellow-400 text-center mt-10 font-mono text-2xl font-semibold'>
+                Lets add some Todos in your Todo-List 😀
+            </div>
           )}
           </div>
-
-
-
-             
 
             </div>
 
@@ -239,7 +245,7 @@ const Form = () => {
                  {/* delete all todos */}
               { (editForm===false && todos.length>0 ) && (
                 <div className='' >
-                  <button className=' bg-pink-800 text-yellow-400 p-2 rounded-lg'
+                  <button className=' bg-pink-800 text-yellow-400 font-semibold p-2 ml-4 rounded-lg'
                   onClick={()=> {setTodos([]); toast.error( " All Todos deleted 🏴‍☠️ " )}   } >
                     Delete All Todos
                   </button>
