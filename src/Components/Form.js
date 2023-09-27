@@ -195,6 +195,7 @@ const Form = () => {
                   handleCheckbox = {handleCheckbox}
                   handleDelete = {handleDelete}
                   handleEdit = {handleEdit}
+                  key={index}
                 />
 
 
