@@ -1,13 +1,13 @@
 // we need useState and useEffect hooks
 import React,{useState,useEffect} from 'react'
+import TodoList from './TodoList';
 
 // importing toasts
 import {toast } from 'react-toastify';
 
 //importing icons from react icons
 import {BsCalendarPlus} from 'react-icons/bs';
-import {RiDeleteBin6Line} from 'react-icons/ri';
-import {BiEdit} from 'react-icons/bi';
+
 
 
 // getting todos from local storage
@@ -175,58 +175,30 @@ const Form = () => {
 
 
         {/* Rendering todos depending on length of todos greater than 0 */}
+
+        
         <div className='mt-3   '>
           {todos.length>0 &&(
+
             <div className='flex flex-col-reverse'>
               {todos.map(   (individualTodo,index)=>(
 
-                <div className='bg-yellow-400 text-black font-semibold text-xl m-2 p-2 flex  justify-between' key={individualTodo.ID}>
-
-                  <div className='flex  gap-3'>
-
-                       {/* we dont need to show checkbox when edit button is clicked */}
-                      
-                      {
-                        editForm===false && (
-                            <input type='checkbox' checked={individualTodo.completed}
-                            onChange={()=>handleCheckbox(individualTodo.ID)}/>
-                        )
-                      }
-
-                      <span
-                      style={individualTodo.completed===true?{textDecoration:'line-through'}:{textDecoration:'none'}}>
-                      
-                      {individualTodo.TodoValue}
-                      
-                      </span>
-                  </div>
-
-                   {/* we dont need to show edit and delete icons when edit button is clicked */}
-                  
-                  { editForm===false &&
-                    (
-                    <div className='flex gap-3'>
-
-                        <button onClick={ ()=> 
-                                  handleEdit(individualTodo,index)
-                         }>
-                            <BiEdit/>
-                        </button>
+              
 
 
-                        <button  onClick={()=>{handleDelete(individualTodo.ID);
-                         toast.warning( "Todo deleted ✂" )}}>
-                        <RiDeleteBin6Line/>
 
-                        </button>
-                      
 
-                      
+                <TodoList 
+                  individualTodo = {individualTodo}
+                  index = {index}
+                  editForm = {editForm}
+                  handleCheckbox = {handleCheckbox}
+                  handleDelete = {handleDelete}
+                  handleEdit = {handleEdit}
+                />
 
-                    </div>
-                  )}
 
-                    </div>
+
                      )
                  )} 
               </div>
