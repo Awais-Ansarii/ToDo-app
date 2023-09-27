@@ -17,5 +17,6 @@
 - Handled some edge cases like show a msg "  add some Todos in your Todo-List " when there is no tasks inside todo list,
 - Hide delete all todos button when there is no todo present etc etc.
 - optimized the code by cleaning and creating new components according to the features
+- made app responsive and formatted the code to look clean
 
 
